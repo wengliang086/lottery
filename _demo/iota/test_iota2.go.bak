@@ -1,0 +1,37 @@
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type TokenType uint16
+
+const (
+	KEYWORD TokenType = iota
+	IDENTIFIER
+	LBRACKET
+	RBRACKET
+	INT
+)
+
+type Token struct {
+	Type TokenType
+	Lexeme string
+}
+
+type IntegerConstant struct {
+	Token *Token
+	Value uint64
+}
+
+func main() {
+	fmt.Println(KEYWORD, IDENTIFIER, LBRACKET, RBRACKET, INT)
+	fmt.Println(reflect.TypeOf(INT))
+	t := Token{LBRACKET, "aaabbb"}
+	ic := IntegerConstant{
+		Token: &t,
+		Value: 123,
+	}
+	fmt.Println(ic.Token.Lexeme)
+}
